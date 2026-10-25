@@ -1,0 +1,13 @@
+﻿step,rows_in,rows_out,detail
+1 load,134726,134726,11 columns from EV_Population_Washington_Clean__1_.csv
+2 schema,134726,134726,11 columns OK; dropped extras: none
+3 scope,134726,134726,removed 0 rows with State != WA
+4 text,134726,134726,cells modified per column: City=21
+4 text,134726,134726,distinct City 454 -> 453; Make 36; Model 125
+5 types,134726,134726,Postal Code->str(5); Model Year/Electric Range/Base MSRP->Int64
+6 invalid,134726,134726,Range->NA 0; MSRP->NA 0; Year->NA 0; ZIP outside WA span (reported only) 0; Model Year<2010 kept 37
+7 features,134726,134726,"added Type, CAFV Status, Range Missing, County City"
+8 missing,134726,134726,"Model=249 (0.18%); Electric Range=56,869 (42.21%); Base MSRP=131,307 (97.46%)"
+8 missing,134726,134726,"Range missing by type: BEV=56,868/103,674, PHEV=1/31,052; CAFV Unknown & Range missing overlap=56,868 of Unknown=56,868"
+9 duplicates,134726,134726,"93,707 rows (69.6%) repeat all 11 columns; largest identical group=562; NOT removed (no vehicle ID, each row = one vehicle)"
+10 validate,134726,134726,11/11 report figures reproduced

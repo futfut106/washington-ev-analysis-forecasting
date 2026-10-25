@@ -1,0 +1,3 @@
+﻿test,n,statistic,p_value,effect_size,effect_name,extra,decision
+H4b chi-square (11/2023),5954054,72265.76416338405,0.0,0.11016912880651623,Cramer's V,dof=38; minE=59.4,Bác bỏ H0
+H4b chi-square (01/2017),5940783,11788.718837283943,0.0,0.044546281827809855,Cramer's V,dof=38; minE=8.2,Bác bỏ H0

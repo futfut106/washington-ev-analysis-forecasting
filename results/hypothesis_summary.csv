@@ -1,0 +1,12 @@
+﻿test,n,statistic,p_value,effect_size,effect_name,extra,decision
+"H1 Mann-Whitney U (chính, toàn mẫu có Range)",77857,1446940030.0,0.0,0.9911473853844657,rank-biserial,CLES=0.996,Bác bỏ H0
+"H1 Mann-Whitney U (độ nhạy, Model Year<=2020)",65779,895028844.0,0.0,0.9861717106967438,rank-biserial,CLES=0.993,Bác bỏ H0
+"H2 Spearman (chính, toàn mẫu)",77857,0.09008591978974971,5.508505321213044e-140,0.09008591978974971,|rho|,,Bác bỏ H0
+H2 Spearman (BEV),46806,0.7797732873218662,0.0,0.7797732873218662,|rho|,,Bác bỏ H0
+H2 Spearman (PHEV),31051,0.035536566670335286,3.7587837371597674e-10,0.035536566670335286,|rho|,,Bác bỏ H0
+"H3 chi-square (chính 2x2, bỏ unknown)",77858,32165.89493383216,0.0,0.6427560864359577,Cramer's V,dof=1; minE=6690.4,Bác bỏ H0
+"H3 chi-square (độ nhạy 2x3, giữ unknown)",134726,72957.19708634744,0.0,0.7358823090588994,Cramer's V,dof=2; minE=3866.3,Bác bỏ H0
+H4a chi-square (39 county),134726,1623.4960744488985,0.0,0.10977410716795878,Cramer's V,dof=38; minE=0.7,Bác bỏ H0
+"H4a chi-square (độ nhạy, bỏ county < 30 xe (36 county))",134683,1617.2015381681272,0.0,0.10957858350088306,Cramer's V,dof=35; minE=7.4,Bác bỏ H0
+H4b chi-square (11/2023),5954054,72265.76416338405,0.0,0.11016912880651623,Cramer's V,dof=38; minE=59.4,Bác bỏ H0
+H4b chi-square (01/2017),5940783,11788.718837283943,0.0,0.044546281827809855,Cramer's V,dof=38; minE=8.2,Bác bỏ H0
