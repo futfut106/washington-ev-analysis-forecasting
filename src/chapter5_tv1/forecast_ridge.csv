@@ -1,0 +1,13 @@
+model,date,origin,horizon,actual,pred,config_id,target_transform
+Ridge,2022-12-31,2022-11-30,1,115665,115559.18515975327,ridge_alpha_10,standardized_log_growth
+Ridge,2023-01-31,2022-11-30,2,119377,118638.45327009546,ridge_alpha_10,standardized_log_growth
+Ridge,2023-02-28,2022-11-30,3,122322,121826.2458985827,ridge_alpha_10,standardized_log_growth
+Ridge,2023-03-31,2022-11-30,4,125478,124788.58745975976,ridge_alpha_10,standardized_log_growth
+Ridge,2023-04-30,2022-11-30,5,129728,127914.1050915649,ridge_alpha_10,standardized_log_growth
+Ridge,2023-05-31,2022-11-30,6,133975,131125.43659562958,ridge_alpha_10,standardized_log_growth
+Ridge,2023-06-30,2022-11-30,7,138353,134303.77854786091,ridge_alpha_10,standardized_log_growth
+Ridge,2023-07-31,2022-11-30,8,142537,137570.24801810348,ridge_alpha_10,standardized_log_growth
+Ridge,2023-08-31,2022-11-30,9,148730,140915.89104987308,ridge_alpha_10,standardized_log_growth
+Ridge,2023-09-30,2022-11-30,10,152690,144300.6314970794,ridge_alpha_10,standardized_log_growth
+Ridge,2023-10-31,2022-11-30,11,157161,147761.86131704607,ridge_alpha_10,standardized_log_growth
+Ridge,2023-11-30,2022-11-30,12,159478,151302.76555119723,ridge_alpha_10,standardized_log_growth

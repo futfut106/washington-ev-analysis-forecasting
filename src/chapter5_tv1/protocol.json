@@ -1,0 +1,47 @@
+{
+  "source": "history.csv, 6474 dòng, tổng hợp 39 hạt x 2 nhóm theo tháng",
+  "series_sha256": "0cfff966678a4f20a0a48a87f090cfcc7eee1b3029010c762fa66e93a42f7315",
+  "train": [
+    "2017-01-31",
+    "2022-11-30"
+  ],
+  "test": [
+    "2022-12-31",
+    "2023-11-30"
+  ],
+  "horizon": 12,
+  "seed": 42,
+  "features": [
+    "r_lag_1",
+    "r_lag_2",
+    "r_lag_3",
+    "r_mean_3",
+    "r_mean_6"
+  ],
+  "folds": [
+    [
+      "2020-11-30",
+      47,
+      40
+    ],
+    [
+      "2021-05-31",
+      53,
+      46
+    ],
+    [
+      "2021-11-30",
+      59,
+      52
+    ]
+  ],
+  "grid": {
+    "alpha": [
+      0.1,
+      1,
+      10
+    ]
+  },
+  "selection": "Largest alpha within 1% of minimum mean CV RMSE",
+  "chapter4_arima_preferred": "Original section 4.4, pending group confirmation"
+}

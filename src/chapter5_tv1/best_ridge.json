@@ -1,0 +1,20 @@
+{
+  "config_id": "ridge_alpha_10",
+  "alpha": 10.0,
+  "cv_mean_rmse": {
+    "0.1": 828.4181146362422,
+    "1.0": 829.6316183611085,
+    "10.0": 815.7937028800383
+  },
+  "tie_rule": "Largest alpha within 1% of minimum mean CV RMSE",
+  "n_supervised": 64,
+  "fold_sizes": [
+    47,
+    53,
+    59
+  ],
+  "source_sha256": "0cfff966678a4f20a0a48a87f090cfcc7eee1b3029010c762fa66e93a42f7315",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "pandas": "3.0.1"
+}
