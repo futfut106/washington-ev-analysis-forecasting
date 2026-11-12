@@ -243,8 +243,15 @@ def forecast_recursive(
     scaler_X = artifact["scaler_X"]
     mu_r = artifact["mu_r"]
     std_r = artifact["std_r"]
-    last_y = artifact["last_y"]
-    buffer_r = list(artifact["last_r_history"])
+    if train_history is not None:
+        n_tr = artifact.get("n_train_months", len(train_history))
+        levels = np.asarray(train_history, dtype=float)[:n_tr]
+        last_y = float(levels[-1])
+        growth = np.diff(np.log(levels))
+        buffer_r = list(growth[-6:])
+    else:
+        last_y = artifact["last_y"]
+        buffer_r = list(artifact["last_r_history"])
     
     z_preds: List[float] = []
     r_preds: List[float] = []
@@ -400,3 +407,9 @@ def run_backtest(
     }
     
     return cv_df, summary
+
+
+# Chuẩn hóa tên hàm theo hợp đồng bàn giao Mục D
+fit = fit_model
+forecast = forecast_recursive
+

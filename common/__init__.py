@@ -15,6 +15,8 @@ from .features import (
 
 from .backtest import (
     FOLDS_DEFINITION,
+    fit,
+    forecast,
     fit_model,
     forecast_recursive,
     run_backtest,
@@ -29,6 +31,8 @@ __all__ = [
     "compute_step_features_from_buffer",
     "FEATURE_METADATA",
     "FOLDS_DEFINITION",
+    "fit",
+    "forecast",
     "fit_model",
     "forecast_recursive",
     "run_backtest",
