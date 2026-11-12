@@ -1,0 +1,6 @@
+feature_id,feature_name,display_name,formula,shift_steps,window_size,description,scale_requirement,sample_value_2017_08
+1,r_lag1,Độ trễ bậc 1 (r_{t-1}),r_{t-1},1,1,Tốc độ tăng trưởng log ở tháng liền trước (t-1). Nắm bắt động lượng ngắn hạn gần nhất.,Có cho Ridge/SVR; Không bắt buộc cho RF/XGBoost,0.02242397163431953
+2,r_lag2,Độ trễ bậc 2 (r_{t-2}),r_{t-2},2,1,Tốc độ tăng trưởng log ở 2 tháng trước (t-2). Phản ánh xu hướng trễ bậc 2.,Có cho Ridge/SVR; Không bắt buộc cho RF/XGBoost,0.026505036745287924
+3,r_lag3,Độ trễ bậc 3 (r_{t-3}),r_{t-3},3,1,Tốc độ tăng trưởng log ở 3 tháng trước (t-3). Nắm bắt chu kỳ quý gần nhất.,Có cho Ridge/SVR; Không bắt buộc cho RF/XGBoost,0.025329391741966134
+4,r_roll3,Trung bình trượt 3 tháng (Rolling Mean 3),(r_{t-1} + r_{t-2} + r_{t-3}) / 3,1,3,Trung bình tốc độ tăng trưởng của 3 tháng trước đó (shift(1) rồi rolling). Làm mượt nhiễu quý.,Có cho Ridge/SVR; Không bắt buộc cho RF/XGBoost,0.02475280004052453
+5,r_roll6,Trung bình trượt 6 tháng (Rolling Mean 6),(r_{t-1} + ... + r_{t-6}) / 6,1,6,Trung bình tốc độ tăng trưởng của 6 tháng trước đó (shift(1) rồi rolling). Phản ánh xu thế trung hạn.,Có cho Ridge/SVR; Không bắt buộc cho RF/XGBoost,0.026623200602123493

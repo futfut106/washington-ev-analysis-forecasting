@@ -1,0 +1,95 @@
+{
+  "project": "Washington EV Analysis and Forecasting - Chapter 5 Machine Learning",
+  "course": "IS403.R14",
+  "group": "Group 8",
+  "author_tv2": "Nguyen Nu Tra Giang",
+  "role_tv2": "Features engineering & Time-series Backtesting Framework",
+  "data": {
+    "source_file": "data/ch4_series.csv",
+    "raw_source": "Electric Vehicle Population Size History By County (DOL, Data.WA.gov [5])",
+    "sha256": "a1e03dfe87942af1485421bd29aeb57d2303576c547f00079a8b4275bdb12185",
+    "total_months": 83,
+    "start_date": "2017-01-31",
+    "end_date": "2023-11-30",
+    "train_months": 71,
+    "train_start": "2017-01-31",
+    "train_end": "2022-11-30",
+    "test_months": 12,
+    "test_start": "2022-12-31",
+    "test_end": "2023-11-30",
+    "supervised_train_rows": 64,
+    "supervised_train_start": "2017-08-31",
+    "supervised_train_end": "2022-11-30"
+  },
+  "target_representation": {
+    "level_variable": "EV_Total (vehicle count)",
+    "learning_target": "r_t = log(y_t) - log(y_{t-1})",
+    "scaling": "z_t = (r_t - mu_{r,train}) / std_{r,train} (fitted per fold)",
+    "inversion_formula": "y_{T+h} = y_T * exp( sum_{j=1}^h r_{T+j} )",
+    "clipping": "None (negative growth rates are preserved)"
+  },
+  "features": {
+    "names": [
+      "r_lag1",
+      "r_lag2",
+      "r_lag3",
+      "r_roll3",
+      "r_roll6"
+    ],
+    "count": 5,
+    "shift_applied": "shift(1) enforced on all lag and rolling features to prevent leakage",
+    "warmup_months": 7
+  },
+  "validation_protocol": {
+    "method": "Expanding-window time series cross-validation (3 folds)",
+    "folds": [
+      {
+        "fold": 1,
+        "origin": "2020-11",
+        "train_end": "2020-11-30",
+        "val_start": "2020-12-31",
+        "val_end": "2021-11-30",
+        "n_train_months": 47,
+        "n_supervised_rows": 40,
+        "val_months": 12
+      },
+      {
+        "fold": 2,
+        "origin": "2021-05",
+        "train_end": "2021-05-31",
+        "val_start": "2021-06-30",
+        "val_end": "2022-05-31",
+        "n_train_months": 53,
+        "n_supervised_rows": 46,
+        "val_months": 12
+      },
+      {
+        "fold": 3,
+        "origin": "2021-11",
+        "train_end": "2021-11-30",
+        "val_start": "2021-12-31",
+        "val_end": "2022-11-30",
+        "n_train_months": 59,
+        "n_supervised_rows": 52,
+        "val_months": 12
+      }
+    ],
+    "selection_metric": "mean_cv_rmse (on vehicle scale)",
+    "secondary_metrics": [
+      "mean_cv_mae",
+      "mean_cv_smape"
+    ],
+    "tie_rule": "If RMSE is within 1% of the best configuration, select the simpler model",
+    "primary_seed": 42,
+    "additional_seeds": [
+      43,
+      44
+    ]
+  },
+  "models_supported": [
+    "Ridge",
+    "Random Forest",
+    "SVR",
+    "XGBoost"
+  ]
+}
