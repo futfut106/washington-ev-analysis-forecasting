@@ -1,0 +1,9 @@
+﻿check,status
+full_train_64_rows,PASS
+label_scaler_train_only,PASS
+recursive_lag1_uses_previous_prediction,PASS
+features_exclude_current_target,PASS
+future_actual_mutation_does_not_change_predictions,PASS
+cv_288_predictions,PASS
+growth_inversion,PASS
+negative_growth_not_clipped,PASS

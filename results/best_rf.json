@@ -1,0 +1,37 @@
+{
+  "config": {
+    "config_id": "RF05",
+    "n_estimators": 300,
+    "max_depth": 3,
+    "min_samples_leaf": 3,
+    "max_features": 0.7,
+    "random_state": 42
+  },
+  "locked_at_utc": "2026-11-12T19:32:21.337830+00:00",
+  "data_sha256": "0cfff966678a4f20a0a48a87f090cfcc7eee1b3029010c762fa66e93a42f7315",
+  "protocol_sha256": "50fd031eed8a63f40e55c1f964b017e2f0257426b7500e32688af8eb2d951823",
+  "mean_cv_rmse": 814.1415081730869,
+  "minimum_mean_cv_rmse": 814.1415081730869,
+  "eligible_config_ids": [
+    "RF05"
+  ],
+  "selection_rule": {
+    "primary": "mean of three 12-step vehicle-scale fold RMSEs",
+    "eligible": "mean_cv_rmse <= 1.01 * minimum mean_cv_rmse",
+    "order": [
+      "max_depth ascending",
+      "min_samples_leaf descending",
+      "mean_cv_rmse ascending",
+      "config_id ascending"
+    ],
+    "note": "RF-specific clarification fixed before CV; max_features is not ranked by complexity"
+  },
+  "cv_runtime_s": 15.01584169500029,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0"
+  },
+  "status": "LOCKED_BEFORE_TEST"
+}

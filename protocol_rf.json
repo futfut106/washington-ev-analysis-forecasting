@@ -1,0 +1,138 @@
+{
+  "recorded_at_utc": "2026-11-12T19:32:06.281782+00:00",
+  "data_sha256": "0cfff966678a4f20a0a48a87f090cfcc7eee1b3029010c762fa66e93a42f7315",
+  "original_protocol_sha256": "a1e03dfe87942af1485421bd29aeb57d2303576c547f00079a8b4275bdb12185",
+  "original_hash_matches": false,
+  "data_scope": "83 months supplied by user; train 71, comparison 12",
+  "folds": [
+    {
+      "fold": 1,
+      "origin": "2020-11",
+      "train_end": "2020-11-30",
+      "val_start": "2020-12-31",
+      "val_end": "2021-11-30",
+      "n_train_months": 47,
+      "n_supervised_rows": 40,
+      "val_months": 12
+    },
+    {
+      "fold": 2,
+      "origin": "2021-05",
+      "train_end": "2021-05-31",
+      "val_start": "2021-06-30",
+      "val_end": "2022-05-31",
+      "n_train_months": 53,
+      "n_supervised_rows": 46,
+      "val_months": 12
+    },
+    {
+      "fold": 3,
+      "origin": "2021-11",
+      "train_end": "2021-11-30",
+      "val_start": "2021-12-31",
+      "val_end": "2022-11-30",
+      "n_train_months": 59,
+      "n_supervised_rows": 52,
+      "val_months": 12
+    }
+  ],
+  "feature_names": [
+    "r_lag1",
+    "r_lag2",
+    "r_lag3",
+    "r_roll3",
+    "r_roll6"
+  ],
+  "target_transform": "standardized_log_growth",
+  "target_std_ddof": 0,
+  "configs": [
+    {
+      "config_id": "RF01",
+      "n_estimators": 300,
+      "max_depth": 2,
+      "min_samples_leaf": 3,
+      "max_features": 0.7,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF02",
+      "n_estimators": 300,
+      "max_depth": 2,
+      "min_samples_leaf": 3,
+      "max_features": 1.0,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF03",
+      "n_estimators": 300,
+      "max_depth": 2,
+      "min_samples_leaf": 5,
+      "max_features": 0.7,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF04",
+      "n_estimators": 300,
+      "max_depth": 2,
+      "min_samples_leaf": 5,
+      "max_features": 1.0,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF05",
+      "n_estimators": 300,
+      "max_depth": 3,
+      "min_samples_leaf": 3,
+      "max_features": 0.7,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF06",
+      "n_estimators": 300,
+      "max_depth": 3,
+      "min_samples_leaf": 3,
+      "max_features": 1.0,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF07",
+      "n_estimators": 300,
+      "max_depth": 3,
+      "min_samples_leaf": 5,
+      "max_features": 0.7,
+      "random_state": 42
+    },
+    {
+      "config_id": "RF08",
+      "n_estimators": 300,
+      "max_depth": 3,
+      "min_samples_leaf": 5,
+      "max_features": 1.0,
+      "random_state": 42
+    }
+  ],
+  "primary_seed": 42,
+  "selection": {
+    "primary": "mean of three 12-step vehicle-scale fold RMSEs",
+    "eligible": "mean_cv_rmse <= 1.01 * minimum mean_cv_rmse",
+    "order": [
+      "max_depth ascending",
+      "min_samples_leaf descending",
+      "mean_cv_rmse ascending",
+      "config_id ascending"
+    ],
+    "note": "RF-specific clarification fixed before CV; max_features is not ranked by complexity"
+  },
+  "source_sha256": {
+    "common/features.py": "ade4a39534f4e81e82fece6215b8a2ed0cc2d612392da7ac5a1cabc4b48e7c22",
+    "common/backtest.py": "4b6ef539053b2b2dc31eaaff97d05359c3b3a1fc6f2515c80dae1debfe16ceb4",
+    "models/random_forest.py": "f9d9d3852b63eb15844e29fa6ef9dfd4969d833099381939b7fd96cdd469365a",
+    "run_rf.py": "1de02dd301dc5e2f3e19b6143611ea2247b4c9017cf3632475f0bcbb501a82b4"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0"
+  }
+}
