@@ -489,14 +489,68 @@ def create_report():
         align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=4, size=CAPTION_SIZE
     )
 
-    # Save docx
-    out_report = Path("D:/Giang/IS403/IS403_repo/washington-ev-analysis-forecasting/reports/Muc_5.2_Dac_trung_va_Thiet_ke_thuc_nghiem.docx")
-    doc.save(out_report)
-    print("Document successfully saved to:", out_report)
+    # 5.2.5 Đồng bộ hóa với các mốc chuẩn thống kê Chương 4 (ARIMA & SARIMA)
+    add_rich_p([
+        ("Kết nối và đồng bộ hóa với mốc đối chứng Chương 4 (ARIMA & Baselines): ", "b"),
+        "Để trả lời câu hỏi nghiên cứu RQ5 một cách khách quan và công bằng, khung thực nghiệm của Mục 5.2 được đồng bộ tuyệt đối với mô hình đối chứng thống kê ARIMA(2,2,2) từ Mục 4.4 do thành viên Tuấn Anh (TV3) phụ trách. Mô hình ARIMA(2,2,2) được huấn luyện trên 71 tháng đầu (01/2017–11/2022) với bậc sai phân ",
+        ("d", "i"), " = 2, đạt AIC = 1.052,00, BIC = 1.063,18 và vượt qua kiểm định tự tương quan phần dư Ljung-Box (",
+        ("p", "i"), "-value > 0,05 tại các độ trễ 10 và 15). Trên cùng cửa sổ so sánh cố định 12 tháng (12/2022–11/2023), mô hình ARIMA(2,2,2) đạt MAE = 2.090,42 xe, RMSE = 2.723,51 xe, sMAPE = 1,44% và bias = 1.260,07 xe. Toàn bộ 12 giá trị dự báo không làm tròn của ARIMA(2,2,2) đã được nhóm chuẩn hóa và lưu trữ tại ",
+        ("results/forecast_arima.csv", "i"),
+        " theo cùng định dạng schema với các mô hình học máy (",
+        ("model, date, origin, horizon, actual, pred, config_id, target_transform", "i"),
+        "). Điều này đảm bảo toàn bộ bốn mô hình học máy ở các mục tiếp theo (Ridge, Random Forest, SVR, XGBoost) đều được đo lường đối chứng trực tiếp trên cùng một hệ quy chiếu và cùng một mốc xuất phát thống nhất."
+    ])
 
+    # Bảng 5.4 Danh mục sản phẩm bàn giao của TV2
+    add_rich_p(
+        [("Bảng 5.4. Danh mục sản phẩm bàn giao của khung thực nghiệm dùng chung (Mục 5.2 - Nguyễn Nữ Trà Giang)", "b")],
+        align=WD_ALIGN_PARAGRAPH.CENTER, before=4, after=3
+    )
+
+    t4 = doc.add_table(rows=8, cols=3)
+    w4 = [Inches(1.8), Inches(2.7), Inches(1.97)]
+    style_table(t4, w4)
+
+    fill_cell(t4.rows[0].cells[0], ["Tên tệp sản phẩm"], align=WD_ALIGN_PARAGRAPH.CENTER, is_header=True)
+    fill_cell(t4.rows[0].cells[1], ["Mô tả vai trò và chức năng"], align=WD_ALIGN_PARAGRAPH.CENTER, is_header=True)
+    fill_cell(t4.rows[0].cells[2], ["Quy chuẩn nghiệm thu"], align=WD_ALIGN_PARAGRAPH.CENTER, is_header=True)
+
+    rows_t4 = [
+        (["common/features.py"], ["Mô-đun tạo biến log-growth r và 5 đặc trưng shift(1)/rolling"], ["Không rò rỉ r_t vào X_t, xử lý rolling chuẩn"]),
+        (["common/backtest.py"], ["Khung kiểm định chéo 3 fold và dự báo đệ quy 12 bước"], ["API thống nhất fit/forecast, buffer chỉ chứa lịch sử"]),
+        (["data/folds.csv"], ["Cấu hình phân chia 3 fold thời gian bên trong train"], ["40, 46, 52 cặp học; horizon 12 tháng/fold"]),
+        (["data/feature_dictionary.csv"], ["Từ điển chi tiết định nghĩa 5 đặc trưng đầu vào"], ["Mô tả công thức, độ trễ và ý nghĩa kinh tế"]),
+        (["data/supervised_train.csv"], ["Tệp dữ liệu học có giám sát mẫu để đối chiếu"], ["Đúng 64 dòng học (08/2017 đến 11/2022)"]),
+        (["test_leakage.py"], ["Bộ kiểm thử đơn vị tự động kiểm tra ranh giới thời gian"], ["5/5 bài kiểm thử PASS 100%"]),
+        (["results/forecast_arima.csv"], ["12 giá trị dự báo không làm tròn mốc chuẩn ARIMA(2,2,2)"], ["Đồng bộ chuẩn schema Chương 5 để TV1/TV6 tích hợp"]),
+    ]
+
+    for idx, rdata in enumerate(rows_t4, start=1):
+        fill_cell(t4.rows[idx].cells[0], rdata[0], align=WD_ALIGN_PARAGRAPH.LEFT)
+        fill_cell(t4.rows[idx].cells[1], rdata[1], align=WD_ALIGN_PARAGRAPH.LEFT)
+        fill_cell(t4.rows[idx].cells[2], rdata[2], align=WD_ALIGN_PARAGRAPH.LEFT)
+
+    add_rich_p(
+        [("Nguồn: Nhóm tổng hợp từ phân công nhiệm vụ và mã nguồn thực thi.", "i")],
+        align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=4, size=CAPTION_SIZE
+    )
+
+    # Save docx
     out_parent = Path("D:/Giang/IS403/Muc_5.2_TV2_Dac_trung_va_khung_thuc_nghiem.docx")
-    doc.save(out_parent)
-    print("Copy successfully saved to:", out_parent)
+    try:
+        doc.save(out_parent)
+        print("Copy successfully saved to:", out_parent)
+    except Exception as e:
+        print("Could not save to parent:", e)
+
+    out_report = Path("D:/Giang/IS403/IS403_repo/washington-ev-analysis-forecasting/reports/Muc_5.2_Dac_trung_va_Thiet_ke_thuc_nghiem.docx")
+    try:
+        doc.save(out_report)
+        print("Document successfully saved to:", out_report)
+    except PermissionError:
+        out_updated = Path("D:/Giang/IS403/IS403_repo/washington-ev-analysis-forecasting/reports/Muc_5.2_Dac_trung_va_Thiet_ke_thuc_nghiem_updated.docx")
+        doc.save(out_updated)
+        print("Original file is locked by Word. Saved to updated copy:", out_updated)
 
 
 if __name__ == "__main__":
